@@ -7,8 +7,7 @@ This sets up a Mattermost server and connects it to Rafael Römhild's great [Ope
 1. Install license file in this directory, named `e20license.txt`
 2. Run `vagrant up`
 3. Go to `http://127.0.0.1` and log in with `admin/admin`
-4. Configure the Planet Express Team to Open Invite by going to `Main Menu` > `Team Settings` > `Allow any user with an account on this server to join`. This is required because there is no way to add all Mattermost users to a default team.
-5. In a separate browser window, log in with the following LDAP usernames (passwords are identical):
+4. In a separate browser window, log in with the following LDAP usernames (passwords are identical):
 
  - `fry` - on Ship's Crew team and Planet Express
  - `hermes` - on Administrator's team and Planet Express
@@ -41,14 +40,14 @@ This uses the `ldapmodify` command to make changes to the LDAP server to ensure 
 
  - `vagrant ssh`
 
-### MySQL
+### Postgres
 
  - Configure your local client like this:
  	- **Host:** `127.0.0.1`
  	- **Username:** `mmuser`
  	- **Password:** `really_secure_password`
  	- **Database:** `mattermost`
- 	- **Port:** `13306`
+ 	- **Port:** `15432`
 
 ## Version History
 

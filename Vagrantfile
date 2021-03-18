@@ -1,22 +1,19 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-MATTERMOST_VERSION = '5.10.0'
+MATTERMOST_VERSION = '5.32.1'
+DATABASE_USER_PASS = 'really_secure_password'
+DATABASE_ROOT_PASS = 'Password42!'
 
-MYSQL_ROOT_PASSWORD = 'mysql_root_password'
-MATTERMOST_PASSWORD = 'really_secure_password'
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/ubuntu-20.04"
   config.vm.network "forwarded_port", guest: 8065, host: 8065
-  config.vm.network "forwarded_port", guest: 3306, host: 13306
+  config.vm.network "forwarded_port", guest: 5432, host: 15432
   config.vm.hostname = 'mattermost'
 
   setup_script = File.read('setup.sh')
-
-  setup_script.gsub!('#MATTERMOST_PASSWORD', MATTERMOST_PASSWORD)
-  setup_script.gsub!('#MYSQL_ROOT_PASSWORD', MYSQL_ROOT_PASSWORD)
  
-  config.vm.provision :shell, inline: setup_script, args: MATTERMOST_VERSION, run: 'once'
+  config.vm.provision :shell, inline: setup_script, args: [MATTERMOST_VERSION, DATABASE_USER_PASS, DATABASE_ROOT_PASS], run: 'once'
   
 end

@@ -1,0 +1,1 @@
+update Teams set allowopeninvite='t' where name='planet-express';
